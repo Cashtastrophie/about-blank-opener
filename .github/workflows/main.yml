@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # Use a specific version of Ubuntu
 
     steps:
       - name: Checkout code
@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies and generate lockfile
         run: |
           npm install
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "Your Name"
+          git config user.email "your-email@example.com"
           git add package-lock.json
           git commit -m "Add lockfile"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
